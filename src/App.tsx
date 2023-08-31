@@ -1,10 +1,10 @@
-import { createGlobalStyle, ThemeProvider } from "styled-components";
-import Router from "./Router";
-import {ReactQueryDevtools} from "react-query/devtools";
-import { darkTheme, lightTheme } from "./theme";
-import ToggleButton from "./ToggleButton";
-import { isDarkAtom } from "./atoms";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import Router from './Router';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { darkTheme, lightTheme } from './theme';
+import ToggleButton from './components/ToggleButton';
+import { isDarkAtom } from './atoms';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
 v2.0 | 20110126
 License: none (public domain)
 */
-
+ 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,npm
 a, abbr, acronym, address, big, cite, code,
@@ -74,23 +74,18 @@ a {
 
 `;
 
-
-
 function App() {
   const isDark = useRecoilValue(isDarkAtom);
   const setIsDarkAtom = useSetRecoilState(isDarkAtom);
-  const toggleDark = () => setIsDarkAtom(current => !current);
+  const toggleDark = () => setIsDarkAtom((current) => !current);
 
   return (
     <>
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-        <ToggleButton 
-          title={isDark? "Light": "Dark"}
-          onClick={toggleDark}
-        />
-        <GlobalStyle/>
-        <Router/>
-        <ReactQueryDevtools initialIsOpen={true}/>
+        <ToggleButton title={isDark ? 'Light' : 'Dark'} onClick={toggleDark} />
+        <GlobalStyle />
+        <Router />
+        <ReactQueryDevtools initialIsOpen={true} />
       </ThemeProvider>
     </>
   );
